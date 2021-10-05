@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def index 
     @comments = Post.find(params[:post_id]).comments
-
 
     respond_to do |format|
       format.html { @comments }
@@ -17,8 +17,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to posts_path, notice: 'Comment was successfully created.'
-      json_response(@comment, :created)
+      respond_to do |format|
+        format.json { render json: @comment, status: :created }
+        format.html { redirect_to posts_path, notice: 'Comment was successfully created.' }
+      end      
     else
       redirect_to posts_path, alert: @comment.errors.full_messages.join('. ').to_s
     end
