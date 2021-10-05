@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  
+  skip_before_action :verify_authenticity_token
+
   def index
     @comments = Post.find(params[:post_id]).comments
 
@@ -7,11 +8,21 @@ class CommentsController < ApplicationController
       format.json { render :json => @comments }
     end
   end
-  
+
   def create
+    p "params #{comment_params}";
     @comment = Comment.new(comment_params)
     @comment.post_id = params[:post_id]
     @comment.user = current_user
+
+    # if @comment.save
+    #   respond_to do |format|
+    #     format.html { redirect_to posts_path, notice: 'Comment was successfully created.' }
+    #     format.json { render :json => @comments, status: :created }
+    #   end
+    # else
+    #   redirect_to posts_path, alert: @comment.errors.full_messages.join('. ').to_s
+    # end
 
     if @comment.save
       redirect_to posts_path, notice: 'Comment was successfully created.'
