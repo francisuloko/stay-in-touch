@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
+gem 'devise-jwt'
+
 # Omniauth Gem setup. Set up tutorial: https://www.youtube.com/watch?v=Dd8dOAL6WYs
 gem 'activerecord-session_store'
 gem 'omniauth', '~> 1.0.0.pr2'
