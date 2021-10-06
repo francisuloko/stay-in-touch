@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { timeline_posts }
-      format.json { render :json => timeline_posts }
+      format.json { render json: timeline_posts }
     end
   end
 

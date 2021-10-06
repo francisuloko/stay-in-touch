@@ -5,12 +5,12 @@ class CommentsController < ApplicationController
     @comments = Post.find(params[:post_id]).comments
 
     respond_to do |format|
-      format.json { render :json => @comments }
+      format.json { render json: @comments }
     end
   end
 
   def create
-    p "params #{comment_params}";
+    p "params #{comment_params}"
     @comment = Comment.new(comment_params)
     @comment.post_id = params[:post_id]
     @comment.user = current_user
