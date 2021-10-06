@@ -93,7 +93,7 @@ To get a local copy up and running, follow these simple example steps:
 #### API endpoints
 
 The app allows a number of API calls using curl or your favorite API client, such as postman or VS Code's Thunder Client.
-You must be logged for certain calls to work.
+You must be logged in first for certain calls to work.
 
 ***Endpoints:***
 
