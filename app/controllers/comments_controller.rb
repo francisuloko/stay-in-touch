@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
 
   def index
     @comments = Post.find(params[:post_id]).comments

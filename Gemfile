@@ -51,6 +51,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'letter_opener'
+  gem 'rest-client'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'webdrivers'
