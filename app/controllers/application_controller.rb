@@ -40,9 +40,11 @@ class ApplicationController < ActionController::Base
   end
 
   # So we can use Pundit policies for api_users
+  # rubocop:disable Naming/MemoizedInstanceVariableName
   def set_current_user
     @current_user ||= warden.authenticate(scope: :api_user)
   end
+  # rubocop:enable Naming/MemoizedInstanceVariableName
 
   def check_friendship(logged_user, user)
     Friendship.exists?(inviter_id: logged_user, invitee_id: user, status: true)
