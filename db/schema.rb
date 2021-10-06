@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 2021_10_06_163443) do
     t.index ["inviter_id"], name: "index_friendships_on_inviter_id"
   end
 
+  create_table "jwt_denylist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"

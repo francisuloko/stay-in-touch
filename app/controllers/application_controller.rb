@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    current_user || warden.authenticate(scope: :api_user)
+    @current_user ||= warden.authenticate(scope: :api_user)
   end
 
   def check_friendship(logged_user, user)
