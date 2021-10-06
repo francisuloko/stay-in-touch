@@ -3,13 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 
-ruby '2.7.0'
+ruby '2.6.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use postgresql as the database for Active Record
 group :development, :test do
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'sqlite3', '~> 1.4'
 end
 gem 'pg'
@@ -52,7 +52,6 @@ end
 
 group :test do
   # The RSpec testing framework
-  gem 'database_cleaner_2', '~> 2.1'
   gem 'rspec-rails', '~> 5.0', '>= 5.0.1'
   gem 'shoulda-matchers'
   # Adds support for Capybara system testing and selenium driver

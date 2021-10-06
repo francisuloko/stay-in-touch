@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: social_media_production
-  username: social_media
-  password: <%= ENV['SOCIAL_MEDIA_DATABASE_PASSWORD'] %>
+  username: 'postgres'
+  password: 'postgres'
+  # password: <%= ENV['SOCIAL_MEDIA_DATABASE_PASSWORD'] %>
