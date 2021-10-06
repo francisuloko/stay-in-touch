@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.html { redirect_to posts_path, notice: 'Comment was successfully created.' }
-        format.json { render :json => 'Message created successfully', status: :created }
+        format.json { render json: 'Message created successfully', status: :created }
       end
     else
       redirect_to posts_path, alert: @comment.errors.full_messages.join('. ').to_s
