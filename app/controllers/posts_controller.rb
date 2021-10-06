@@ -6,15 +6,15 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { timeline_posts }
-      format.xml { render :xml => timeline_posts }
-      format.json { render :json => timeline_posts }
+      format.xml { render xml: timeline_posts }
+      format.json { render json: timeline_posts }
     end
   end
 
   def show
     @post = Post.find(params[:id])
     respond_to do |format|
-      format.json { render :json => @post }
+      format.json { render json: @post }
     end
   end
 
