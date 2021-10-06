@@ -13,6 +13,8 @@ What you can do on the app:
 - See the status of your relationship with other users
 - Create posts and see posts from your friends
 - Users can comment and like on their friends' posts
+- Authenticate username through API
+- See posts, comments and create new comments through API
 
 In this project we:
 - Used PostgreSQL as the database
@@ -24,6 +26,7 @@ In this project we:
 - Implemented OAuth to allow users to sign up to the app using their Google account
 - Implemented integration tests with Capybara
 - Used Rspec to test model validations and associations
+- Used JWT gem to build the API authentication flow
 
 # Application Screenshot
 ![screenshot of Timeline Page](./Assets/RorSocialScaffold-Timeline.png)
@@ -35,6 +38,7 @@ In this project we:
 - Ruby v2.7.2
 - Ruby on Rails v6.0.3.6
 - OAuth
+- JWT
 - Google account services
 - Devise gem for user registration and account confirmation
 - Heroku
@@ -86,6 +90,53 @@ To get a local copy up and running, follow these simple example steps:
 8. Wait for a response
 9. If your friend request is accepted, now you can see each other's posts
 
+#### API endpoints
+
+The app allows a number of API calls using curl or your favorite API client, such as postman or VS Code's Thunder Client.
+You must be logged for certain calls to work.
+
+***Endpoints:***
+
+api/login
+
+- Method: POST
+- Headers:
+  - Accept: application/json
+  - Content-Type: application/json
+- Body: {"api_user": {"email":"name@email.com","password":"the password"}}
+- Successful response:
+    - status: 200 OK
+    - body: jwt secret (Copy this to authenticate protected content access)
+
+posts.json
+- Method: GET
+- Headers:
+  - Accept: application/json
+  - Content-Type: application/json
+  - Authorization: Bearer **<JWT TOKEN>**
+- Successful response:
+  - status: 200 OK
+  - body: json array with posts
+
+posts/:post_id/comments.json
+- Method: GET
+- Headers:
+  - Accept: application/json
+  - Content-Type: application/json
+  - Authorization: Bearer **<JWT TOKEN>**
+- Successful response:
+  - status: 200 OK
+  - body: json array with comments
+
+posts/:post_id/comments.json
+- Method: POST
+- Headers:
+  - Accept: application/json
+  - Content-Type: application/json
+  - Authorization: Bearer **<JWT TOKEN>**
+- Successful response:
+  - status: 201 Created
+  - body: Message created successfully
 ### Run tests
 
 ```
