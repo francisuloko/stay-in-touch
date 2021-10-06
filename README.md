@@ -109,6 +109,15 @@ There are two different types of tests in this project :
 - Twitter: [@ArturoAlvarezV](https://twitter.com/ArturoAlvarezV)
 - Linkedin: [Arturo Alvarez](https://www.linkedin.com/in/arturoalvarezv/)
 
+👤 **Eri**
+- Github: [@errea](https://github.com/errea)
+- Twitter: [@Erreakay](https://github.com/errea)
+- Linkedin: [Eri Okereafor](https://www.linkedin.com/in/eri-ngozi-okereafor/)
+
+👤 **Breno Xavier**
+- Github: [@brenoxav](https://github.com/brenoxav)
+- Linkedin: [Breno Xavier](https://www.linkedin.com/in/brenoxav/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
@@ -120,4 +129,3 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 This project is [MIT](https://github.com/alexisbec/ror-social-scaffold/blob/master/LICENSE) licensed.
-
