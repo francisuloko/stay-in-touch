@@ -52,7 +52,6 @@ end
 
 group :test do
   # The RSpec testing framework
-  gem 'database_cleaner-active_record'
   gem 'rspec-rails', '~> 5.0', '>= 5.0.1'
   gem 'shoulda-matchers'
   # Adds support for Capybara system testing and selenium driver
