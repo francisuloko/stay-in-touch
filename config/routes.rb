@@ -18,6 +18,7 @@ Rails.application.routes.draw do
                        path_names: { sign_in: 'login',
                                      sign_out: 'logout' }
     devise_scope :user do
+      post 'users', to: 'registrations#create'
       get 'login', to: 'devise/sessions#new'
       delete 'logout', to: 'devise/sessions#destroy'
     end

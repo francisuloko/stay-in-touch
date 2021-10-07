@@ -10,7 +10,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    p "params #{comment_params}"
     @comment = Comment.new(comment_params)
     @comment.post_id = params[:post_id]
     @comment.user = current_user
