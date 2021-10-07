@@ -119,8 +119,8 @@ You must be logged in first to access protected content.
     - body: 
       ```json
         { 
-          success: true,
-          response: 'Registration successful'
+          "success": true,
+          "response": "Registration successful"
         }
       ```
 
