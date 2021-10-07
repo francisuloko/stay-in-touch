@@ -1,18 +1,33 @@
 Rails.application.routes.draw do
-
   root 'posts#index'
 
+  # Devise (login/logout) for HTML requests
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations'
   }
 
-  resources :users, only: [:index, :show]
-  resources :friendships, only: [:index, :create, :update, :destroy]
-  resources :posts, only: [:index, :create] do
-    resources :comments, only: [:create]
-    resources :likes, only: [:create, :destroy]
+  # API namespace, for JSON requests at /api/sign_[in|out]
+  namespace :api do
+    devise_for :users, defaults: { format: :json },
+                       class_name: 'ApiUser',
+                       skip: %i[omniauth_callbacks registrations
+                                passwords confirmations
+                                unlocks],
+                       path: '',
+                       path_names: { sign_in: 'login',
+                                     sign_out: 'logout' }
+    devise_scope :user do
+      post 'users', to: 'registrations#create'
+      get 'login', to: 'devise/sessions#new'
+      delete 'logout', to: 'devise/sessions#destroy'
+    end
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users, only: %i[index show]
+  resources :friendships, only: %i[index create update destroy]
+  resources :posts, only: %i[index create] do
+    resources :comments, only: %i[index create]
+    resources :likes, only: %i[create destroy]
+  end
 end
