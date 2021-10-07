@@ -90,53 +90,131 @@ To get a local copy up and running, follow these simple example steps:
 8. Wait for a response
 9. If your friend request is accepted, now you can see each other's posts
 
-#### API endpoints
+### API endpoints
 
 The app allows a number of API calls using curl or your favorite API client, such as postman or VS Code's Thunder Client.
-You must be logged in first for certain calls to work.
+You must be logged in first to access protected content.
 
 ***Endpoints:***
 
-api/login
-
+#### /api/users
+- Action: Register a new user.
 - Method: POST
 - Headers:
   - Accept: application/json
   - Content-Type: application/json
-- Body: {"api_user": {"email":"name@email.com","password":"the password"}}
+- Body: 
+  ```json
+  {
+      "user": {
+          "name": "api user 7", 
+          "email": "apiuser7@email.com", 
+          "password": "abc123",
+          "password_confirmation": "abc123"
+      }
+  }
+  ```
+- Successful response:
+    - status: 200 OK
+    - body: 
+      ```json
+        { 
+          success: true,
+          response: 'Registration successful'
+        }
+      ```
+
+
+#### /api/login
+- Action: Login user.
+- Method: POST
+- Headers:
+  - Accept: application/json
+  - Content-Type: application/json
+- Body:
+  ```json
+  {
+    "api_user": {
+      "email":"name@email.com",
+      "password":"the password"
+    }
+  }
+  ```
 - Successful response:
     - status: 200 OK
     - body: jwt secret (Copy this to authenticate protected content access)
 
-posts.json
+#### /posts.json
+- Action: Get a list of posts.
 - Method: GET
 - Headers:
   - Accept: application/json
   - Content-Type: application/json
-  - Authorization: Bearer **<JWT TOKEN>**
+  - Authorization: Bearer **\<JWT TOKEN\>**
 - Successful response:
   - status: 200 OK
-  - body: json array with posts
+  - body:
+    ```json
+      [
+        {
+          "id": 15,
+          "user_id": 50,
+          "content": "Hi, this is a nice post.",
+          "created_at": "2021-10-07T16:45:18.580Z",
+          "updated_at": "2021-10-07T16:45:18.580Z"
+        },
+        {
+          "id": 14,
+          "user_id": 51,
+          "content": "Hello world.",
+          "created_at": "2021-10-07T16:44:25.442Z",
+          "updated_at": "2021-10-07T16:44:25.442Z"
+        }
+      ]
 
-posts/:post_id/comments.json
+    ```
+
+#### /posts/:post_id/comments.json
+- Action: Get all comments from a post.
 - Method: GET
 - Headers:
   - Accept: application/json
   - Content-Type: application/json
-  - Authorization: Bearer **<JWT TOKEN>**
+  - Authorization: Bearer **\<JWT TOKEN\>**
 - Successful response:
   - status: 200 OK
-  - body: json array with comments
+  - body:
+    ```json
+      [
+        {
+          "id": 15,
+          "user_id": 51,
+          "post_id": 15,
+          "content": "This is a comment from API.",
+          "created_at": "2021-10-07T16:46:52.875Z",
+          "updated_at": "2021-10-07T16:46:52.875Z"
+        }
+      ]
+    ```
 
-posts/:post_id/comments.json
+#### /posts/:post_id/comments.json
+- Action: Add a message on a post.
 - Method: POST
 - Headers:
   - Accept: application/json
   - Content-Type: application/json
-  - Authorization: Bearer **<JWT TOKEN>**
+  - Authorization: Bearer **\<JWT TOKEN\>**
+- Body:
+  ```json
+    {
+      "comment": {
+        "content":"Your comment."
+      }
+    }
+  ```
 - Successful response:
   - status: 201 Created
-  - body: Message created successfully
+  - body: `Message created successfully`
 ### Run tests
 
 ```
