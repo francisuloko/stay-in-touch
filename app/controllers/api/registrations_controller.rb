@@ -11,6 +11,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
 
     resource.save
     # yield resource if block_given?
+    # rubocop:disable Style/GuardClause
     if resource.persisted?
       if resource.active_for_authentication?
         sign_up(resource_name, resource)
@@ -28,5 +29,6 @@ class Api::RegistrationsController < Devise::RegistrationsController
       render status: 401,
              json: { response: 'Incorrect parameters. Try again.' } and return
     end
+    # rubocop:enable Style/GuardClause
   end
 end
